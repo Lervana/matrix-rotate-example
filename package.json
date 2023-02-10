@@ -8,6 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "nodemon src/cli.ts files/input.csv",
+    "build": "npx tsc --project tsconfig.json",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -19,6 +21,11 @@
     "prettier": "^2.8.4",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
+    "tslib": "^2.5.0",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "csv-stream": "^0.2.0",
+    "fast-csv": "^4.3.6"
   }
 }

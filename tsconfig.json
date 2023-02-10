@@ -1,13 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": ".",
+    "rootDir": "src",
     "lib": ["es2021", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -16,7 +15,9 @@
     "noPropertyAccessFromIndexSignature": false,
     "target": "esnext",
     "module": "commonjs",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "sourceMap": false
   },
-  "exclude": ["rpg/node_modules", "tmp"]
+  "exclude": ["rpg/node_modules", "tmp", "**/*.test.ts"]
 }

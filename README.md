@@ -15,8 +15,3 @@ TO BE ADDED:
 1. Better validation of input data
 2. More tests
 3. Performance tests
-
-   `
-
-
-

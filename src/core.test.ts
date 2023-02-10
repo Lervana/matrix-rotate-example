@@ -1,4 +1,4 @@
-import { rotateMatrix } from "./core";
+import { DIRECTION, rotateMatrix } from "./core";
 
 type TTestCase = {
   id: string;
@@ -58,7 +58,7 @@ const testRotation = (testCase: TTestCase) => {
     testCase.input
   }] as given input`, () => {
     test(`to left --> [${testCase.output_left}]`, () => {
-      const result = rotateMatrix(testCase.id, testCase.input, "left");
+      const result = rotateMatrix(testCase.id, testCase.input, DIRECTION.LEFT);
 
       expect(result).toEqual({
         id: testCase.id,
@@ -68,7 +68,7 @@ const testRotation = (testCase: TTestCase) => {
     });
 
     test(`to right --> [${testCase.output_right}]`, () => {
-      const result = rotateMatrix(testCase.id, testCase.input, "right");
+      const result = rotateMatrix(testCase.id, testCase.input, DIRECTION.RIGHT);
 
       expect(result).toEqual({
         id: testCase.id,

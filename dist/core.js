@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rotateMatrix = void 0;
+exports.rotateMatrix = exports.DIRECTION = void 0;
+const value_rotate_1 = require("./value-rotate");
 const validateData = (data) => {
     if (data.length === 0)
         return {
@@ -15,42 +16,16 @@ const validateData = (data) => {
         center,
     };
 };
-const countIndex = (x, y, size) => size * y + x;
-const getValueForRotateRight = ({ x, y, size, center, input, }) => {
-    // Check if x,y are in expected quarter
-    if (x === y && y === center && size % 2 === 1) {
-        return input[countIndex(x, y, size)];
-    }
-    if (x <= center && y >= x && y < size - 1) {
-        return input[countIndex(x, y + 1, size)];
-    }
-    if (x > center && x >= y && y >= size - x) {
-        return input[countIndex(x, y - 1, size)];
-    }
-    if (y > center) {
-        return input[countIndex(x + 1, y, size)];
-    }
-    return input[countIndex(x - 1, y, size)];
-};
-const getValueForRotateLeft = ({ x, y, size, center, input, }) => {
-    // Check if x,y are in expected quarter
-    if (x === y && y === center && size % 2 === 1) {
-        return input[countIndex(x, y, size)];
-    }
-    if (y <= center && x >= y && x < size - 1 - y) {
-        return input[countIndex(x + 1, y, size)];
-    }
-    if (y > center && y >= x && x >= size - y) {
-        return input[countIndex(x - 1, y, size)];
-    }
-    if (x > center) {
-        return input[countIndex(x, y + 1, size)];
-    }
-    return input[countIndex(x, y - 1, size)];
-};
+var DIRECTION;
+(function (DIRECTION) {
+    DIRECTION[DIRECTION["RIGHT"] = 0] = "RIGHT";
+    DIRECTION[DIRECTION["LEFT"] = 1] = "LEFT";
+})(DIRECTION = exports.DIRECTION || (exports.DIRECTION = {}));
 const rotate = (input, size, center, direction) => {
     const result = Array(size * size).fill(null);
-    const rotationMethod = direction === "right" ? getValueForRotateRight : getValueForRotateLeft;
+    const rotationMethod = direction === DIRECTION.RIGHT
+        ? value_rotate_1.getValueForRotateRight
+        : value_rotate_1.getValueForRotateLeft;
     for (let x = 0; x < size; x++) {
         for (let y = 0; y < size; y++) {
             result[size * y + x] = rotationMethod({
@@ -64,7 +39,7 @@ const rotate = (input, size, center, direction) => {
     }
     return result;
 };
-const rotateMatrix = (id, data, direction = "right") => {
+const rotateMatrix = (id, data, direction = DIRECTION.RIGHT) => {
     if (!id)
         throw Error("Id is required.");
     if (!data)
